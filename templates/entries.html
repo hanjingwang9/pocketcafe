@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div class="entries-container">
+        <h3><i>{{ username }}'s Coffee Entries</i></h3>
+        <a href="/log" class="btn">Add</a>
+        <br>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Roast</th>
+                    <th scope="col">Sweetness</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col" style="width: 300px;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                    <tr>
+                        <td>{{ entry.date }}</td>
+                        <td>{{ entry.name }}</td>
+                        <td>{{ entry.brand }}</td>
+                        <td>{{ entry.roast }}</td>
+                        <td>{{ entry.sweetness }}</td>
+                        <td>{{ entry.rating }}</td>
+                        <td>{{ entry.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

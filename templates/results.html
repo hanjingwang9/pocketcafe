@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block main %}
+    <h3>Search Results</h3>
+    <br>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for result in results %}
+            <div class="col">
+                <div class="card h-100">
+                    {% if result.image_url == "no-image" %}
+                        <div class="card-cover"></div>
+                    {% else %}
+                        <img src="{{ result.image_url }}" class="card-img-top" alt="{{ result.name }}" style="object-fit: cover; height: 200px;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ result.name }}</h5>
+                        <p class="card-text"><strong>Brand:</strong> {{ result.brand }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal{{ loop.index }}">
+                            View Description
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for each drink's description (reference: Bootstrap documentation and ChatGPT) -->
+            <div class="modal fade" id="modal{{ loop.index }}" tabindex="-1" aria-labelledby="modalLabel{{ loop.index }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel{{ result.id }}">{{ result.name }} - {{ result.brand }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ result.description }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

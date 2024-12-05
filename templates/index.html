@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+    <div class="card card-light border-light">
+        <br>
+        <br>
+        <h3><b>Hello, {{ username }}</b></h3>
+        <div class="row">
+            <div class="col align-self-center">
+                <h5>You've logged {{ summary[0].total }} entries this week.</h5>
+            </div>
+            <div class="col">
+                <!-- GIF by 42stones (https://www.deviantart.com/42stones/art/coffee-break-GIF-296635639) under CC license -->
+                <img src="/static/index.gif" alt="coffee gif" width="300">
+            </div>
+            <div class="col align-self-center">
+                <h5>Weekly average rating: {{ summary[0].avg_rating | round(2) }}</h5>
+            </div>
+        </div>
+        <div class="align-items-center">
+            <a href="/log" class="btn" style="width: 200px;">Log Something New</a>
+        </div>
+        <br>
+        <br>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-6">
+            <div class="card card-dark">
+                <div class="card-header">
+                    &#9829; <span>Your top drink</span> &#9829;
+                </div>
+                <div class="card-body">
+                    <p>Name: {{ top[0].name }}</p>
+                    <p>Roast: {{ top[0].roast }}</p>
+                    <p>Level of Sweetness: {{ top[0].sweetness }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 align-self-center">
+            <p>Thinking of another cup right now? Find your exact cravings:</p>
+            <a href="/search" class="btn">Search</a>
+            <a href="/entries" class="btn">See Past Entries</a>
+        </div>
+    </div>
+{% endblock %}

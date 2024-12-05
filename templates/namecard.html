@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Namecard
+{% endblock %}
+
+{% block main %}
+    <h3>Create Your Very Own Coffee Namecard!</h3>
+    <br>
+    <div class="mb-3">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-4">
+                <label for="favorite" class="form-label">Choose your favorite drink to share</label>
+                <select class="form-select" name="favorite">
+                    <option>Choose from</option>
+                    {% for drink in top %}
+                        <option>{{ drink.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="brand" class="form-label">Choose your favorite brand</label>
+                <input class="form-control" name="brand" type="text">
+            </div>
+            <div class="col-2">
+                <br>
+                <button class="btn" id="capture-btn">Capture</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="mb-3 " id="capture">
+        <div class="buffer"></div>
+        <h5>Hi, I'm {{ username }} on Pocket Café</h5>
+        <div class="row">
+            <div class="col-9">
+                <p>This week, my favorite coffee was <span id="favorite"></span></p>
+                <p>Let's grab another at <span id="brand"></span></p>
+            </div>
+            <div class="col-3">
+                <img src="/static/icon.png"  alt="Coffee" style="width: 50px; height: 50px;">
+            </div>
+        </div>
+        <div class="buffer"></div>
+    </div>
+
+    <!-- html2canvas package by Niklas von Hertzen, https://html2canvas.hertzen.com/ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        // Make sure content is loaded
+         document.addEventListener("DOMContentLoaded", function() {
+            // Include user's favorite drink on namecard
+            document.querySelector("select[name='favorite']").addEventListener("change", function() {
+                document.getElementById("favorite").textContent = this.value;
+            });
+            // Include user's favorite brand on namecard
+            document.querySelector("input[name='brand']").addEventListener("input", function() {
+                document.getElementById("brand").textContent = this.value;
+            });
+
+            // Activate when user presses capture button
+            document.getElementById("capture-btn").addEventListener("click", function() {
+                html2canvas(document.querySelector("#capture")).then(canvas => {
+                    document.body.appendChild(canvas);
+
+                    // Create downloadable image from the canvas information that html2canvas compiled
+                    const imageData = canvas.toDataURL("image/png");
+                    const downloadLink = document.createElement("a");
+                    downloadLink.href = imageData;
+                    downloadLink.download = "namecard.png";
+                    downloadLink.style.display = "none";
+
+                    // Automatically download image on user's device
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    
+                    // Hide the image and download link on webpage
+                    document.body.removeChild(canvas);
+                    document.body.removeChild(downloadLink);
+                });
+            });
+         });
+    </script>
+{% endblock %}

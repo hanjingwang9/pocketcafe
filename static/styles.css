@@ -1,0 +1,194 @@
+/* Some aesthetic changes */
+::selection
+{
+    background: #839c84;
+}
+html, body
+{
+    font-family: "Gill Sans", "Segoe UI", sans-serif;
+    background-color: #f9f9f9;
+}
+table, th, td 
+{
+    background-color: #f9f9f9 !important;
+    border-color: #6f8c6f;
+}
+.btn
+{
+    background-color: #9dba9a;
+}
+.btn-primary 
+{
+    background-color: #6a9a76;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #5a8763;
+    color: white;
+}
+.navbar-brand img, .navbar-brand span 
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+.card-light
+{
+    background-color: #EAF0E8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.card-light select, .card-light input
+{
+    background-color: #EAF0E8;
+}
+.card-dark
+{
+    background-color: #DCE6D8;
+}
+.card-header span
+{
+    font-weight: bold;
+    font-style: italic;
+}
+.card-footer
+{
+    border-top: 0px;
+    background-color:white;
+}
+.card-cover
+{
+    background-color: #9dba9a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+.entries-container 
+{
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    margin: auto;
+}
+.entries-container h3
+{
+    text-align:center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.entries-container table th, .entries-container table td
+{
+    text-align: left;
+    border-bottom: 1px solid #dce6d8;
+}
+.entries-container table th
+{
+    background-color: #9dba9a !important;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.footer 
+{
+    text-align: center;
+    clear: both;
+    position: relative;
+    margin-top: -20px;
+    border-top: 1px solid #e0e0e0;
+}
+.search-form
+{
+    margin: 0 auto;
+    padding: 20px;
+}
+.search-form input.form-control, .search-form select.form-select 
+{
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+}
+#capture 
+{
+    font-family: "Futura", "Gill Sans", "Segoe UI", sans-serif;
+    text-align: center;
+    background-color: #F1F5EF;
+    border: 2px solid #DCE6D8;
+    border-radius: 15px;
+    padding: 20px;
+    width: 50%;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+#capture h5 
+{
+    color: #333;
+    margin-bottom: 10px;
+}
+#capture p 
+{
+    color: #555;
+}
+#capture .buffer
+{
+    border-top: 2px solid #DCE6D8;
+    width: 100%;
+    margin: 10px auto 10px;
+}
+#capture::before,
+#capture::after 
+{
+    content: "♥ ♥ ♥ ♥ ♥";
+    font-size: 0.5rem;
+    color: #9dba9a;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+}
+#capture::before 
+{
+    top: 5%;
+}
+#capture::after 
+{
+    bottom: 5%;
+}
+/* Rating stars on log page */
+/* Inspiration from Vikas Choubey: https://dev.to/vikas2426/5-star-rating-component-a-step-by-step-guide-37bk */
+.rating 
+{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+}
+  
+.rating input 
+{
+    display: none;
+}
+  
+.rating label 
+{
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+  
+.rating label:hover,
+.rating label:hover ~ label 
+{ 
+    color: orange;
+    transform: scale(1.1);
+}
+  
+.rating input:checked ~ label 
+{
+    color: orange;
+}

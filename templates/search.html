@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+    <h3>Find Your Perfect Coffee @ Harvard Square</h3>
+    <br>
+    <form action="/search" method="post" class="search-form">
+        <div class="card card-light p-4 shadow-lg">
+            <br>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <select class="form-select" name="brand" required>
+                        <option value="">Select a Brand</option>
+                        <option value="*">Any</option>
+                        <option>Starbucks</option>
+                        <option>Blank Street</option>
+                        <option>Pavement</option>
+                        <option>Peet's</option>
+                        <option>Blue Bottle</option>
+                        <option>Tatte</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <select class="form-select" name="espresso" required>
+                        <option value="">Choose Type</option>
+                        <option value="*">Any</option>
+                        <option value="1">Espresso-based drink</option>
+                        <option value="0">Non-espresso based drink</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <select class="form-select" name="temperature" required>
+                        <option value="">Select Temperature</option>
+                        <option value="*">Any</option>
+                        <option value="1">Hot</option>
+                        <option value="2">Cold</option>
+                    </select>
+                </div>
+                <div class="col-8">
+                    <input autocomplete="off" class="form-control" name="keywords" placeholder="Keywords" type="text">
+                </div>
+            </div>
+            <br>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary w-50" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+
+
+    <br>
+    <footer class="mb-6">
+        Note: seasonal, regional, and non-caffeine-based drinks are excluded.
+    </footer>
+{% endblock %}

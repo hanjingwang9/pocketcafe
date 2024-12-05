@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log Your Coffee
+{% endblock %}
+
+{% block main %}
+    <h3>Log Your Coffee!</h3>
+    <br>
+    <form action="/log" method="post" id="log">
+        <div class="mb-6">
+            <label for="name" class="form-label">Drink Name:</label>
+            <input autocomplete="off" class="form-control mx-auto w-100" id ="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <br>
+        <div class="row d-flex align-items-center g-3">
+            <div class="col-md-6">
+                <label for="brand" class="form-label">Brand:</label>
+                <input class="form-control mx-auto w-100" id="brand" name="brand" placeholder="i.e. Starbucks" type="text" required>
+            </div>
+            <div class="col-md-6">
+                <label for="roast" class="form-label">Roast:</label>
+                <select class="form-select w-100" id="roast" name="roast" required>
+                    <option value="">Please select roast</option>
+                    <option>Light Roast</option>
+                    <option>Medium Roast</option>
+                    <option>Dark Roast</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row d-flex align-items-center g-3">
+            <div class="col-md-6">
+                <label for="sweetness" class="form-label">Sweetness:</label>
+                <select class="form-select w-100" id="sweetness" name="sweetness" required>
+                    <option value="">Please select sweetness</option>
+                    <option>Bitter</option>
+                    <option>Slightly Sweet</option>
+                    <option>Sweet</option>
+                </select>
+            </div>
+            <!-- Inspiration from Vikas Choubey: https://dev.to/vikas2426/5-star-rating-component-a-step-by-step-guide-37bk -->
+            <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+                <label for="rating" class="form-label">Rating:</label>
+                <div class="rating">
+                    <input type="radio" id="star5" name="rating" value="5">
+                    <label for="star5">&#9733;</label>
+                    <input type="radio" id="star4" name="rating" value="4">
+                    <label for="star4">&#9733;</label>
+                    <input type="radio" id="star3" name="rating" value="3">
+                    <label for="star3">&#9733;</label>
+                    <input type="radio" id="star2" name="rating" value="2">
+                    <label for="star2">&#9733;</label>
+                    <input type="radio" id="star1" name="rating" value="1">
+                    <label for="star1">&#9733;</label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="mb-6">
+            <textarea class="form-control w-100" id="description" name="description" placeholder="Description..." rows="4" required></textarea>
+        </div>
+        <br>
+        <button class="btn" type="submit">Log</button>
+    </form>
+
+    <script>
+        // Inspiration from Vikas Choubey: https://dev.to/vikas2426/5-star-rating-component-a-step-by-step-guide-37bk
+        document.getElementById("log").addEventListener("submit", function (event) {
+            var rating = document.querySelector('input[name="rating"]:checked').value;
+            if (!rating) {
+                alert("Please select a rating before submitting!");
+                event.preventDefault();
+            }
+        });
+    </script>
+
+{% endblock %}
