@@ -11,7 +11,11 @@
         <h3><b>Hello, {{ username }}</b></h3>
         <div class="row">
             <div class="col align-self-center">
-                <h5>You've logged {{ summary[0].total }} entries this week.</h5>
+                {% if not summary[0].avg_rating %}
+                    <h5>Weekly average rating: None yet!</h5>
+                {% else %}
+                    <h5>Weekly average rating: {{ summary[0].avg_rating | round(2) }}</h5>
+                {% endif %}
             </div>
             <div class="col">
                 <!-- GIF by 42stones (https://www.deviantart.com/42stones/art/coffee-break-GIF-296635639) under CC license -->
@@ -34,11 +38,13 @@
                 <div class="card-header">
                     &#9829; <span>Your top drink</span> &#9829;
                 </div>
-                <div class="card-body">
-                    <p>Name: {{ top[0].name }}</p>
-                    <p>Roast: {{ top[0].roast }}</p>
-                    <p>Level of Sweetness: {{ top[0].sweetness }}</p>
-                </div>
+                {% if top[0] %}
+                    <div class="card-body">
+                        <p>Name: {{ top[0].name }}</p>
+                        <p>Roast: {{ top[0].roast }}</p>
+                        <p>Level of Sweetness: {{ top[0].sweetness }}</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-6 align-self-center">
